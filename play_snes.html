@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://www.emulatorjs.com/loader.js"></script>
+</head>
+<body>
+    <h2>Super Nintendo</h2>
+
+    <button onclick="goBack()" style="padding: 10px; font-size: 16px; margin-bottom: 10px;">
+        Kembali ke Menu
+    </button>
+    
+    <div style="width:800px;height:600px;max-width:100%">
+        <div id="game"></div>
+    </div>
+
+    <script type="text/javascript">
+        function goBack() {
+            window.location.href = "snes.html";
+        }
+
+        // Ambil parameter dari URL
+        const params = new URLSearchParams(window.location.search);
+        let roms = params.get("rom");
+
+        if (roms) {
+            EJS_player = "#game";
+            EJS_gameUrl = "http://localhost/retro-games/roms/snes/" + roms; 
+            EJS_core = "snes";
+            EJS_mouse = false; // SNES Mouse
+            EJS_multitap = false; // SNES Multitap
+        } else {
+            document.body.innerHTML += "<p style='color: red;'>Error: ROM tidak ditemukan!</p>";
+        }
+    </script>
+
+    <div id="game"></div>
+</body>
+</html>
